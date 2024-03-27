@@ -12,11 +12,11 @@ export const convertByteToFormatImageSize = (byte: number) => {
 	return `${size.toFixed(1)} ${units[unitsIndex]}`;
 };
 
-export const readFileAsDataURL = (image: File) => {
-	return new Promise((resolve, rejects) => {
+export const readFileAsDataURL = (image: File): Promise<string | ArrayBuffer> => {
+	return new Promise((resolve, reject) => {
 		const reader = new FileReader();
-		reader.onload = (event) => resolve(event.target?.result);
-		reader.onerror = rejects;
+		reader.onload = (event: ProgressEvent<FileReader>) => resolve(event.target?.result ?? "");
+		reader.onerror = (event: ProgressEvent<FileReader>) => reject(event.target?.error);
 		reader.readAsDataURL(image);
 	});
 };

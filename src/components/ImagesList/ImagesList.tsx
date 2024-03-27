@@ -1,9 +1,9 @@
 import React from "react";
-import { convertByteToFormatImageSize } from "../../utils/common";
-import { BasketIco } from "../BasketIco";
+import { ImageDetails } from "../../types/element";
+import { ImagesItem } from "../ImagesItem/ImagesItem";
 
 interface IImagesListProps {
-	images: File[];
+	images: ImageDetails[];
 }
 export const ImagesList: React.FC<IImagesListProps> = ({
 	images,
@@ -12,28 +12,15 @@ export const ImagesList: React.FC<IImagesListProps> = ({
 		<div className="rename-image__list-container">
 			<ul className="rename-image__list">
 				{images.map(({
-					name,
-					size,
-				}: File, index) => (
-					<li className="rename-image__item" key={index}>
-						<div className="rename-image__image">
-							<img src={""} alt="image-img" />
-						</div>
-						<div className="rename-image__content">
-							<p className="rename-image__name">
-								{name.split("")[0]}
-							</p>
-							<p className="rename-image__size">
-								{convertByteToFormatImageSize(size)}
-							</p>
-							<p className="rename-image__extension">
-								{name.split(".").pop()}
-							</p>
-						</div>
-						<button className="rename-image__item-delete">
-							<BasketIco />
-						</button>
-					</li>
+					image,
+					imageUrl
+				}: ImageDetails, index) => (
+					<ImagesItem
+						key={index}
+						imageUrl={imageUrl}
+						name={image.name.split(".")[0]}
+						size={image.size}
+						extension={image.name.split(".").pop()} />
 				))}
 			</ul>
 		</div>

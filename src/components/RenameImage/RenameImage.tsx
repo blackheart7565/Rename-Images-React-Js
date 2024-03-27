@@ -1,5 +1,7 @@
 import React, { DragEvent, useState } from "react";
 
+import { ImageDetails } from "../../types/element";
+import { readFileAsDataURL } from "../../utils/common";
 import { DragDropContent } from "../DragDropContent";
 import { Empty } from "../Empty/Empty";
 import { ImagesList } from "../ImagesList/ImagesList";
@@ -10,10 +12,10 @@ interface IRenameImageProps { }
 
 export const RenameImage: React.FC<IRenameImageProps> = () => {
 	const [isDrop, setIsDrop] = useState<boolean>(false);
-	const [dropImages, setDropImages] = useState<File[]>([]);
-	const [renameImages, setRenameImages] = useState<File[]>([]);
+	const [dropImages, setDropImages] = useState<ImageDetails[]>([]);
+	const [renameImages, setRenameImages] = useState<ImageDetails[]>([]);
 
-	const onDrop = (event: DragEvent<HTMLDivElement>) => {
+	const onDrop = async (event: DragEvent<HTMLDivElement>) => {
 		event.preventDefault();
 
 		const items = event.dataTransfer.items;
@@ -24,10 +26,21 @@ export const RenameImage: React.FC<IRenameImageProps> = () => {
 
 				const file = items[i].getAsFile();
 				if (!file || !file.type.startsWith("image/")) continue;
+				const creationDate = new Date(file.lastModified);
+				const imageUrl = await readFileAsDataURL(file);
+				console.log("creationTime", creationDate);
+				console.log("imageUrl", imageUrl);
 
-				console.log("file", file);
-				setDropImages(prev => [...prev, file]);
+				setDropImages(prev => [
+					...prev,
+					{
+						image: file,
+						creationDate,
+						imageUrl
+					}
+				]);
 			}
+			console.log("dropImages", dropImages);
 			setIsDrop(false);
 		}
 	};
@@ -42,6 +55,7 @@ export const RenameImage: React.FC<IRenameImageProps> = () => {
 	const onDrag = (event: DragEvent<HTMLDivElement>) => {
 		event.preventDefault();
 	};
+	console.log(dropImages);
 
 	return (
 		<div
