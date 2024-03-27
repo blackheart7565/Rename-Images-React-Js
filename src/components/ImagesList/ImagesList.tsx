@@ -1,11 +1,13 @@
 import React from "react";
+import { convertByteToFormatImageSize } from "../../utils/common";
 import { BasketIco } from "../BasketIco";
 
 interface IImagesListProps {
-	images?: File[];
+	images: File[];
 }
-// const units = ['B', 'KB', 'MB', 'GB', 'TB'];
-export const ImagesList: React.FC<IImagesListProps> = () => {
+export const ImagesList: React.FC<IImagesListProps> = ({
+	images,
+}) => {
 	return (
 		<div className="rename-image__list-container">
 			<ul className="rename-image__list">
@@ -72,6 +74,30 @@ export const ImagesList: React.FC<IImagesListProps> = () => {
 						<p className="rename-image__extension">JPG</p>
 					</div>
 				</li>
+				{images.map(({
+					name,
+					size,
+				}: File, index) => (
+					<li className="rename-image__item" key={index}>
+						<div className="rename-image__image">
+							<img src={""} alt="image-img" />
+						</div>
+						<div className="rename-image__content">
+							<p className="rename-image__name">
+								{name.split("")[0]}
+							</p>
+							<p className="rename-image__size">
+								{convertByteToFormatImageSize(size)}
+							</p>
+							<p className="rename-image__extension">
+								{name.split(".").pop()}
+							</p>
+						</div>
+						<button className="rename-image__item-delete">
+							<BasketIco />
+						</button>
+					</li>
+				))}
 			</ul>
 		</div>
 	);

@@ -2,6 +2,7 @@ import React, { DragEvent, useState } from "react";
 
 import { DragDropContent } from "../DragDropContent";
 import { ImagesList } from "../ImagesList/ImagesList";
+import { Button } from "../UI/Button/Button";
 import "./RenameImage.scss";
 
 interface IRenameImageProps { }
@@ -56,23 +57,25 @@ export const RenameImage: React.FC<IRenameImageProps> = () => {
 					</div>
 
 					<div className="rename-image__inner">
-						<ImagesList />
-						<div className="rename-image__inner-center">
-							{/* <span className="rename-image__inner-line"></span>
-							<span className="rename-image__inner-line"></span> */}
-							<span id="rename-progress">
-								<i></i>
-								<i></i>
-								<i></i>
-								<i></i>
-								<i></i>
-								<i></i>
-								<i></i>
-							</span>
-						</div>
-						<ImagesList />
+						<ImagesList images={dropImages} />
+						<span id="rename-progress">
+							<i></i>
+							<i></i>
+							<i></i>
+							<i></i>
+							<i></i>
+							<i></i>
+							<i></i>
+						</span>
+						<ImagesList images={dropImages} />
 					</div>
-					<div className="rename-image__btns"></div>
+
+					<div className="rename-image__btns">
+						<div className="rename-image__btns-left">
+							<Button>Переименовать</Button>
+						</div>
+						<Button>Скачать</Button>
+					</div>
 				</section>
 			</DragDropContent>
 		</div>

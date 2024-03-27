@@ -37,30 +37,6 @@
 		overflow: hidden;
 	}
 
-	&__inner-center {
-		width: 100px;
-		height: 100%;
-		position: relative;
-		flex-shrink: 0;
-		// background: #000;
-	}
-
-	&__inner-line {
-		position: absolute;
-		top: 0;
-		height: 100%;
-		width: 1px;
-		background-color: #707070;
-
-		&:nth-child(1) {
-			left: 0;
-		}
-
-		&:nth-child(2) {
-			right: 0;
-		}
-	}
-
 	&__list-container {
 		width: 100%;
 		height: 100%;
@@ -203,5 +179,13 @@
 	}
 
 
-	&__btns {}
+	&__btns {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 20px 0;
+	}
+
+	&__btns-left {}
+
 }
