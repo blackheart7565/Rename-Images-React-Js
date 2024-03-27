@@ -1,6 +1,7 @@
 import React, { DragEvent, useState } from "react";
 
 import { DragDropContent } from "../DragDropContent";
+import { Empty } from "../Empty/Empty";
 import { ImagesList } from "../ImagesList/ImagesList";
 import { Button } from "../UI/Button/Button";
 import "./RenameImage.scss";
@@ -10,6 +11,7 @@ interface IRenameImageProps { }
 export const RenameImage: React.FC<IRenameImageProps> = () => {
 	const [isDrop, setIsDrop] = useState<boolean>(false);
 	const [dropImages, setDropImages] = useState<File[]>([]);
+	const [renameImages, setRenameImages] = useState<File[]>([]);
 
 	const onDrop = (event: DragEvent<HTMLDivElement>) => {
 		event.preventDefault();
@@ -57,24 +59,43 @@ export const RenameImage: React.FC<IRenameImageProps> = () => {
 					</div>
 
 					<div className="rename-image__inner">
-						<ImagesList images={dropImages} />
-						<span id="rename-progress">
-							<i></i>
-							<i></i>
-							<i></i>
-							<i></i>
-							<i></i>
-							<i></i>
-							<i></i>
-						</span>
-						<ImagesList images={dropImages} />
+						{dropImages && dropImages.length > 0
+							? (
+								<ImagesList images={dropImages} />
+							)
+							: (
+								<Empty>
+									Перетащите картинку(и) <br />для переименования
+								</Empty>
+							)}
+						<div className="rename-image__inner-center">
+							<span id="rename-progress">
+								<i></i>
+								<i></i>
+								<i></i>
+								<i></i>
+								<i></i>
+								<i></i>
+								<i></i>
+							</span>
+						</div>
+						{renameImages && renameImages.length > 0
+							? (
+								<ImagesList images={renameImages} />
+							) : (
+								<Empty>
+									На данный момент<br /> переименованых картинок нету
+								</Empty>
+							)}
 					</div>
 
 					<div className="rename-image__btns">
 						<div className="rename-image__btns-left">
 							<Button>Переименовать</Button>
 						</div>
-						<Button>Скачать</Button>
+						<div className="rename-image__btns-right">
+							<Button>Скачать</Button>
+						</div>
 					</div>
 				</section>
 			</DragDropContent>

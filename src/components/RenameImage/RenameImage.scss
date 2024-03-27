@@ -37,6 +37,12 @@
 		overflow: hidden;
 	}
 
+	&__inner-center {
+		height: 100%;
+		width: 100px;
+		flex-shrink: 0;
+	}
+
 	&__list-container {
 		width: 100%;
 		height: 100%;
@@ -187,5 +193,7 @@
 	}
 
 	&__btns-left {}
+
+	&__btns-right {}
 
 }
