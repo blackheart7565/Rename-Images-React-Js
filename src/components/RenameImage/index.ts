@@ -1,0 +1,2 @@
+export { RenameImage } from "./RenameImage";
+

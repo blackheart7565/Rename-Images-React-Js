@@ -1,0 +1,8 @@
+:root {
+
+	/* Background Color */
+	--scrollbar-track-bg-color: #d6d6d6;
+
+	/* Gradient Color */
+	--scrollbar-thumb-gradient-color: #9c9c9c, #b0b1b4, #9c9c9c;
+}
