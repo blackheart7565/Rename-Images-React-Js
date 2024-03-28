@@ -26,7 +26,7 @@ export const ImagesItem: React.FC<IImagesItemProps> = ({
 			{...props}
 		>
 			<div className="rename-image__image">
-				<img src={src} alt="image-img" />
+				<img src={src} alt="item-file-img" />
 			</div>
 			<div className="rename-image__content">
 				<p className="rename-image__name">

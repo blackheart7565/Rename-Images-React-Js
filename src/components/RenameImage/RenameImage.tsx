@@ -1,7 +1,7 @@
 import { DragEvent, FC, useState } from "react";
 
 import { ImageDetails } from "../../types/element";
-import { readFileAsDataURL, validImageDragDrop } from "../../utils/common";
+import { readFileAsDataURL, renameImage, validImageDragDrop } from "../../utils/common";
 import { DragDropContent } from "../DragDropContent";
 import { Empty } from "../Empty/Empty";
 import { ImageCount } from "../ImageCount";
@@ -56,7 +56,15 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 		event.preventDefault();
 	};
 	const handleRenamingImages = () => {
+		const newName = "image";
 
+		const renameImages = dropImages.map((item: ImageDetails, index: number) => {
+			const { image } = item;
+			const newImage = renameImage(image, `${newName}_${index + 1}.${image.name.split(".").pop()}`);
+			return { ...item, image: newImage } as ImageDetails;
+		});
+
+		setRenameImages(renameImages);
 	};
 
 	return (
@@ -120,7 +128,9 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 
 					<div className="rename-image__btns">
 						<div className="rename-image__btns-left">
-							<Button>Переименовать</Button>
+							<Button
+								onClick={handleRenamingImages}
+							>Переименовать</Button>
 						</div>
 						<div className="rename-image__btns-right">
 							<Button>Скачать</Button>
