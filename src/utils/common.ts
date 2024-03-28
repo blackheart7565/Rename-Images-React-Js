@@ -32,3 +32,24 @@ export const validImageDragDrop = (items: DataTransferItemList) => {
 export const deleteImageItemFromList = (images: ImageDetails[], id: number | string) => {
 	return images.filter((image: ImageDetails) => image.id !== id);
 };
+
+export const compareFileMetadata = (images1: ImageDetails, images2: ImageDetails): boolean => {
+	const fileProps: (keyof File)[] = [
+		"lastModified",
+		"size",
+		"type",
+		"webkitRelativePath"
+	];
+	return fileProps.every(prop => images1.image[prop] === images2.image[prop]);
+};
+
+export const renameImage = (image: File, newName: string, isWritableLastModified: boolean = false): File => {
+	const renameImage = new File([image], newName, { type: image.type });
+
+	Object.defineProperty(renameImage, "lastModified", {
+		value: image.lastModified,
+		writable: isWritableLastModified,
+	} as PropertyDescriptor);
+
+	return renameImage;
+};
