@@ -2,9 +2,7 @@ import React, { HTMLAttributes } from "react";
 
 import "./Button.scss";
 
-interface IButtonProps extends HTMLAttributes<HTMLButtonElement> {
-
-}
+interface IButtonProps extends HTMLAttributes<HTMLButtonElement> { }
 
 export const Button: React.FC<IButtonProps> = ({
 	children,
