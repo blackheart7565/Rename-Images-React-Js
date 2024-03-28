@@ -8,6 +8,7 @@ import { ImageCount } from "../ImageCount";
 import { ImagesList } from "../ImagesList/ImagesList";
 import { Button } from "../UI/Button/Button";
 
+import { Select } from "../UI/Select/Select";
 import "./RenameImage.scss";
 
 interface IRenameImageProps { }
@@ -75,6 +76,9 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 			onDragOver={onDragOver}
 			onDragLeave={onDragLeave}
 		>
+			{/* <div className="rename-image__select">
+				
+			</div> */}
 			<DragDropContent isVisible={isDrop}>
 				<section className="rename-image__wrapper">
 					<div className="rename-image__header">
@@ -131,6 +135,19 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 							<Button
 								onClick={handleRenamingImages}
 							>Переименовать</Button>
+							<Select
+								label={(<img src={"/settings.svg"} alt="settings-icon" />)}
+								items={[
+									{
+										id: 1,
+										value: "wefwef"
+									},
+									{
+										id: 2,
+										value: "regerherhrth"
+									},
+								]}
+							/>
 						</div>
 						<div className="rename-image__btns-right">
 							<Button>Скачать</Button>
