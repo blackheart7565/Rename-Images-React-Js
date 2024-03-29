@@ -9,6 +9,7 @@
 	opacity: 0;
 	visibility: hidden;
 	pointer-events: none;
+	z-index: 500;
 	transition: opacity 0.2s ease-in-out;
 	background-color: rgba(18, 193, 216, 0.4);
 

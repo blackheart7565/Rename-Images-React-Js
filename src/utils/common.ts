@@ -53,3 +53,13 @@ export const renameImage = (image: File, newName: string, isWritableLastModified
 
 	return renameImage;
 };
+
+
+/**
+ * Функция для проверки, содержит ли строка только цифры
+ * @param {string} value 
+ * @returns возвращает `true` если в строке только цыфры, в противном случаии `false`
+ */
+export const isNumeric = (value: string) => {
+	return /^\d+$/.test(value);
+};
