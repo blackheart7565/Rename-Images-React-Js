@@ -14,6 +14,7 @@ import { ModalWindow } from "../ModalWindow";
 import { Region } from "../Region";
 import { Button } from "../UI/Button/Button";
 import { ButtonSelect } from "../UI/ButtonSelect";
+import { ButtonTheme } from "../UI/ButtonTheme";
 import { Select } from "../UI/Select/Select";
 
 import "./RenameImage.scss";
@@ -69,7 +70,7 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 	};
 
 	return (
-		<>
+		<Region>
 			<ModalWindow
 				isOpen={isOpenModalWindow}
 				setIsOpen={setIsOpenModalWindow}
@@ -86,7 +87,7 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 					<section className="rename-image__wrapper">
 						<div className="rename-image__header">
 							<h1 className="rename-image__title">Переименование картинок</h1>
-							<button className="theme-btn"></button>
+							<ButtonTheme id="theme-btn" />
 						</div>
 
 						<div className="rename-image__counts">
@@ -103,15 +104,17 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 						</div>
 
 						<div className="rename-image__inner">
-							{dropImages && dropImages.length > 0
-								? (
-									<ImagesList images={dropImages} setImages={setDropImages} />
-								)
-								: (
-									<Empty>
-										Перетащите картинку(и) <br />для переименование
-									</Empty>
-								)}
+							<Region>
+								{dropImages && dropImages.length > 0
+									? (
+										<ImagesList images={dropImages} setImages={setDropImages} />
+									)
+									: (
+										<Empty>
+											Перетащите картинку(и) <br />для переименование
+										</Empty>
+									)}
+							</Region>
 							<div className="rename-image__inner-center">
 								<span id="rename-progress">
 									<i></i>
@@ -123,14 +126,16 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 									<i></i>
 								</span>
 							</div>
-							{renameImages && renameImages.length > 0
-								? (
-									<ImagesList images={renameImages} setImages={setRenameImages} />
-								) : (
-									<Empty>
-										На данный момент<br /> переименованных картинок нету
-									</Empty>
-								)}
+							<Region>
+								{renameImages && renameImages.length > 0
+									? (
+										<ImagesList images={renameImages} setImages={setRenameImages} />
+									) : (
+										<Empty>
+											На данный момент<br /> переименованных картинок нету
+										</Empty>
+									)}
+							</Region>
 						</div>
 
 						<div className="rename-image__btns">
@@ -181,6 +186,6 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 					</section>
 				</DragDropContent>
 			</div>
-		</>
+		</Region>
 	);
 };
