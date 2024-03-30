@@ -9,4 +9,24 @@ body {
 	min-width: 320px;
 	font-family: "Montserrat";
 	font-size: 14px;
+	background-color: var(--main-bg-color);
+}
+
+*::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: var(--scrollbar-track-bg-color);
+}
+
+*::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: var(--scrollbar-thumb-bg-color);
+	background: -webkit-linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
+	background: -moz-linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
+	background: -o-linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
+	background: linear-gradient(to bottom, var(--scrollbar-thumb-gradient-color));
 }

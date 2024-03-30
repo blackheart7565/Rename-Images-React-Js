@@ -1,8 +1,85 @@
 :root {
+	/*  Color */
+	--select-dropdown-list-item-color: #000;
+	--select-btn-color: #000;
+	--btn-color: #000;
+	--btn-content-hover-color: #FFF;
+	--empty-color: #000;
+	--dragdrop-list-item-content-name-color: #0918f0;
+	--dragdrop-list-item-content-size-color: #000;
+	--dragdrop-list-item-content-extension-color: #000;
+	--images-count-title: #f94700;
+	--images-count-text: #000;
+	--main-title-color: #000;
 
 	/* Background Color */
+	--main-bg-color: #FFF;
 	--scrollbar-track-bg-color: #d6d6d6;
+	--dragdrop-bg-hover-color: #c0c0c0;
+	--select-dropdown-bg-color: #FFF;
+	--select-dropdown-list-item-bg-hover-color: #bdbcbc;
+	--btn-bg-hover-color: #000;
+
+	/* Border */
+	--select-dropdown-border-color: #000;
+	--current-name-border-color: #000;
+	--btn-border-color: #000;
+	--empty-border-color: #c0c0c0;
+	--dragdrop-list-container-border-color: #c0c0c0;
+
+	/* Box Shadow  */
+	--theme-btn-shadow-color: inset 0px 8px 60px rgba(0, 0, 0, 0.1), inset 0px -4px 4px rgba(0, 0, 0, 0.1);
+	--dragdrop-list-item-image-shadow-color: #0e0d0d;
+	--dragdrop-list-item-image-inset-shadow-color: #FFFF;
+	--main-inner-shadow-color: #000;
 
 	/* Gradient Color */
 	--scrollbar-thumb-gradient-color: #9c9c9c, #b0b1b4, #9c9c9c;
+
+	/* Stroke and Fill */
+	--btn-delete-image-item-from-list-color: #000;
+	--btn-delete-image-item-from-list-hover-color: #FF0000;
+}
+
+[data-theme="dark"] {
+	/*  Color */
+	--select-dropdown-list-item-color: #FFF;
+	--select-btn-color: #FFF;
+	--btn-color: #FFF;
+	--btn-content-hover-color: #000;
+	--empty-color: #FFF;
+	--dragdrop-list-item-content-name-color: #65f009;
+	--dragdrop-list-item-content-size-color: #FFF;
+	--dragdrop-list-item-content-extension-color: #FFF;
+	--images-count-title: #f94700;
+	--images-count-text: #FFF;
+	--main-title-color: #FFF;
+
+	/* Background Color */
+	--main-bg-color: rgb(20, 20, 23);
+	--scrollbar-track-bg-color: #0a0a0b;
+	--dragdrop-bg-hover-color: #0b0b0bd6;
+	--select-dropdown-bg-color: #0b0b0bfa;
+	--select-dropdown-list-item-bg-hover-color: #505050bf;
+	--btn-bg-hover-color: #FFF;
+
+	/* Border */
+	--select-dropdown-border-color: #FFF;
+	--current-name-border-color: #FFF;
+	--btn-border-color: #FFF;
+	--empty-border-color: #080809;
+	--dragdrop-list-container-border-color: #080809;
+
+	/* Box Shadow  */
+	--theme-btn-shadow-color: inset 0px 8px 60px rgba(40, 40, 43, 0.8), inset 0px -4px 4px rgb(25, 25, 41);
+	--dragdrop-list-item-image-shadow-color: #0e0d0d;
+	--dragdrop-list-item-image-inset-shadow-color: #FFFF;
+	--main-inner-shadow-color: #080809;
+
+	/* Gradient Color */
+	--scrollbar-thumb-gradient-color: #3c3c3cbf, #505050bf, #3c3c3cbf;
+
+	/* Stroke and Fill */
+	--btn-delete-image-item-from-list-color: #FFF;
+	--btn-delete-image-item-from-list-hover-color: #FF0000;
 }

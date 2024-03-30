@@ -17,6 +17,7 @@ import { ButtonSelect } from "../UI/ButtonSelect";
 import { ButtonTheme } from "../UI/ButtonTheme";
 import { Select } from "../UI/Select/Select";
 
+import { SettingsIcon } from "../SettingsIcon";
 import "./RenameImage.scss";
 
 interface IRenameImageProps { }
@@ -145,7 +146,7 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 										onClick={handleRenamingImages}
 									>Переименовать</Button>
 									<Select
-										label={(<img src={"/settings.svg"} alt="settings-icon" />)}
+										label={(<SettingsIcon />)}
 										items={[
 											{
 												id: 1,
@@ -164,6 +165,46 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 														onClick={handleSetCountClick}
 													>
 														Начать cчет
+													</ButtonSelect>
+												)
+											},
+											{
+												id: 3,
+												value: (
+													<ButtonSelect>
+														test 1
+													</ButtonSelect>
+												)
+											},
+											{
+												id: 4,
+												value: (
+													<ButtonSelect>
+														test 2
+													</ButtonSelect>
+												)
+											},
+											{
+												id: 5,
+												value: (
+													<ButtonSelect>
+														test 3
+													</ButtonSelect>
+												)
+											},
+											{
+												id: 6,
+												value: (
+													<ButtonSelect>
+														test 4
+													</ButtonSelect>
+												)
+											},
+											{
+												id: 7,
+												value: (
+													<ButtonSelect>
+														test 6
 													</ButtonSelect>
 												)
 											},

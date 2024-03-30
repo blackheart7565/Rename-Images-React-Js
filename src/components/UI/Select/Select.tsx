@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { FC, ReactNode, useState } from "react";
 
 import { useClickOutside } from "../../../hooks/useClickOutside";
+
 import "./Select.scss";
 
 interface IItem {

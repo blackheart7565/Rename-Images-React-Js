@@ -7,8 +7,10 @@
 	&-title {
 		letter-spacing: 1px;
 		margin-right: 15px;
-		color: #f94700;
+		color: var(--images-count-title);
 	}
 
-	&-text {}
+	&-text {
+		color: var(--images-count-text);
+	}
 }
