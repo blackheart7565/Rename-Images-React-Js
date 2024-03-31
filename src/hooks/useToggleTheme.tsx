@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { IThemeContextType } from "../types/common";
+import { useLocalStorage } from "./useLocalStorage";
 
 export const useToggleTheme = (): IThemeContextType => {
-	const [isDark, setIsDark] = useState<boolean>(false);
+	const [isDark, setIsDark] = useLocalStorage<boolean>("theme", false);
 
 	useEffect(() => {
 		document.body.setAttribute('data-theme', isDark ? "dark" : "light");

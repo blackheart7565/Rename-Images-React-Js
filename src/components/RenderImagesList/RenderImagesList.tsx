@@ -19,8 +19,6 @@ export const RenderImagesList: React.FC<IRenderImagesListProps> = ({
 	isLoading,
 	EmptyText,
 }) => {
-	console.log(isLoading);
-
 	if (!images || images.length <= 0) {
 		return <Empty>{EmptyText}</Empty>;
 	}

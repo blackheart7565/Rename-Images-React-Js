@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { toast } from "react-toastify";
 
 import { useDragDropHandler } from "../../hooks/useDragDropHandler";
 import { useRenameImages } from "../../hooks/useRenameImages";
@@ -8,18 +9,17 @@ import { isNumeric } from "../../utils/common";
 import { NameSite } from "../../utils/constants";
 import { DragDropContent } from "../DragDropContent";
 import { ImageCount } from "../ImageCount";
+import { LoaderRenamed } from "../LoaderRenamed/LoaderRenamed";
 import { ModalWindow } from "../ModalWindow";
 import { Region } from "../Region";
+import { RenderImagesList } from "../RenderImagesList/RenderImagesList";
+import { SettingsIcon } from "../SettingsIcon";
 import { Button } from "../UI/Button/Button";
 import { ButtonSelect } from "../UI/ButtonSelect";
 import { ButtonTheme } from "../UI/ButtonTheme";
 import { Select } from "../UI/Select/Select";
-
-import { toast } from "react-toastify";
-import { LoaderRenamed } from "../LoaderRenamed/LoaderRenamed";
-import { RenderImagesList } from "../RenderImagesList/RenderImagesList";
-import { SettingsIcon } from "../SettingsIcon";
 import { Wrapper } from "../Wrapper/Wrapper";
+
 import "./RenameImage.scss";
 
 interface IRenameImageProps { }

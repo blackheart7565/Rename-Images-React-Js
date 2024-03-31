@@ -16,7 +16,7 @@ export const ButtonTheme: React.FC<IButtonThemeProps> = ({
 	id,
 	className
 }) => {
-	const { toggleTheme } = useTheme();
+	const { isDark, toggleTheme } = useTheme();
 
 	const handleChangeTheme = (event: ChangeEvent<HTMLInputElement>) => {
 		toggleTheme(event.target.checked);
@@ -31,6 +31,7 @@ export const ButtonTheme: React.FC<IButtonThemeProps> = ({
 				id={id}
 				type="checkbox"
 				className="theme-btn__input"
+				checked={isDark}
 				onChange={handleChangeTheme}
 			/>
 			<MoonIcon />
