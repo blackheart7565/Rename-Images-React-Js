@@ -7,9 +7,7 @@ import { ImageDetails } from "../../types/element";
 import { isNumeric } from "../../utils/common";
 import { NameSite } from "../../utils/constants";
 import { DragDropContent } from "../DragDropContent";
-import { Empty } from "../Empty/Empty";
 import { ImageCount } from "../ImageCount";
-import { ImagesList } from "../ImagesList/ImagesList";
 import { ModalWindow } from "../ModalWindow";
 import { Region } from "../Region";
 import { Button } from "../UI/Button/Button";
@@ -18,6 +16,7 @@ import { ButtonTheme } from "../UI/ButtonTheme";
 import { Select } from "../UI/Select/Select";
 
 import { toast } from "react-toastify";
+import { RenderImagesList } from "../RenderImagesList/RenderImagesList";
 import { SettingsIcon } from "../SettingsIcon";
 import { Wrapper } from "../Wrapper/Wrapper";
 import "./RenameImage.scss";
@@ -31,8 +30,11 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 	const [newName, setNewName] = useState<TStringNumber>(NameSite);
 	const [isNumericInput, setIsNumericInput] = useState<boolean>(false);
 
+	const [isLoadingRenamed, setIsLoadingRenamed] = useState<boolean>(false);
+
 	const {
 		isDrop,
+		isLoadingDragDrop,
 		onDrop,
 		onDrag,
 		onDragOver,
@@ -45,7 +47,6 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 		const renameImages = renamingImages(newName);
 		setRenameImages(renameImages);
 	};
-
 	const handleSetNameClick = () => {
 		setIsNumericInput(false);
 		setIsOpenModalWindow(true);
@@ -54,7 +55,6 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 		setIsNumericInput(true);
 		setIsOpenModalWindow(true);
 	};
-
 	const onSaveValue = (value: string | number) => {
 		const isNum = isNumeric(value.toString());
 
@@ -111,15 +111,14 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 
 						<div className="rename-image__inner">
 							<Region>
-								{dropImages && dropImages.length > 0
-									? (
-										<ImagesList images={dropImages} setImages={setDropImages} />
-									)
-									: (
-										<Empty>
-											Перетащите картинку(и) <br />для переименование
-										</Empty>
-									)}
+								<RenderImagesList
+									images={dropImages}
+									setImages={setDropImages}
+									isLoading={isLoadingDragDrop}
+									EmptyText={
+										<>Перетащите картинку(и) <br />для переименование</>
+									}
+								/>
 							</Region>
 							<div className="rename-image__inner-center">
 								<span id="rename-progress">
@@ -133,14 +132,14 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 								</span>
 							</div>
 							<Region>
-								{renameImages && renameImages.length > 0
-									? (
-										<ImagesList images={renameImages} setImages={setRenameImages} />
-									) : (
-										<Empty>
-											На данный момент<br /> переименованных картинок нету
-										</Empty>
-									)}
+								<RenderImagesList
+									images={renameImages}
+									setImages={setRenameImages}
+									isLoading={isLoadingRenamed}
+									EmptyText={
+										<>На данный момент<br /> переименованных картинок нету</>
+									}
+								/>
 							</Region>
 						</div>
 

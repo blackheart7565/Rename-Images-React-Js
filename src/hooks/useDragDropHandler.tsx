@@ -5,6 +5,7 @@ import { readFileAsDataURL, validImageDragDrop } from "../utils/common";
 
 interface IReturnProps {
 	isDrop: boolean,
+	isLoadingDragDrop: boolean,
 	setIsDrop: TDispatch<boolean>,
 
 	onDrop: (event: DragEvent<HTMLDivElement>) => void;
@@ -13,15 +14,20 @@ interface IReturnProps {
 	onDrag: (event: DragEvent<HTMLDivElement>) => void;
 }
 
-export const useDragDropHandler = (setImages: TDispatch<ImageDetails[]>): IReturnProps => {
+export const useDragDropHandler = (setImages: TDispatch<ImageDetails[]>, loadingTimeout?: number): IReturnProps => {
 	const [isDrop, setIsDrop] = useState<boolean>(false);
+	const [isLoadingDragDrop, setIsLoadingDragDrop] = useState<boolean>(false);
 
 
 	const onDrop = async (event: DragEvent<HTMLDivElement>) => {
 		event.preventDefault();
+		setIsLoadingDragDrop(true);
 
 		const items: DataTransferItemList = event.dataTransfer.items;
-		if (!items || items.length <= 0) return;
+		if (!items || items.length <= 0) {
+			setIsLoadingDragDrop(false);
+			return;
+		}
 
 		const imageFile = validImageDragDrop(items)
 			.map(async (image: (File | null), index: number) => {
@@ -42,6 +48,7 @@ export const useDragDropHandler = (setImages: TDispatch<ImageDetails[]>): IRetur
 			console.error('Error processing files:', error);
 		} finally {
 			setIsDrop(false);
+			setTimeout(() => setIsLoadingDragDrop(false), loadingTimeout ?? 1500);
 		}
 	};
 	const onDragOver = (event: DragEvent<HTMLDivElement>) => {
@@ -58,6 +65,7 @@ export const useDragDropHandler = (setImages: TDispatch<ImageDetails[]>): IRetur
 
 	return {
 		isDrop,
+		isLoadingDragDrop,
 		setIsDrop,
 
 		onDrop,

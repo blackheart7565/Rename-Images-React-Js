@@ -40,6 +40,10 @@
 	--dragdrop-list-item-image-inset-shadow-color: #FFFF;
 	--main-inner-shadow-color: #000;
 	--modal-window-inner-shadow-color: #c0c0c0;
+	--loader-shadow-color-primary: #000000;
+	--loader-shadow-color-secondary: rgba(0, 0, 0, 0.7);
+	--loader-shadow-color-tertiary: rgba(0, 0, 0, 0.5);
+	--loader-shadow-color-quaternary: rgba(0, 0, 0, 0.2);
 
 	/* Gradient Color */
 	--scrollbar-thumb-gradient-color: #9c9c9c, #b0b1b4, #9c9c9c;
@@ -91,6 +95,10 @@
 	--dragdrop-list-item-image-inset-shadow-color: #FFFF;
 	--main-inner-shadow-color: #080809;
 	--modal-window-inner-shadow-color: #292828;
+	--loader-shadow-color-primary: #ffffff;
+	--loader-shadow-color-secondary: rgba(255, 255, 255, 0.7);
+	--loader-shadow-color-tertiary: rgba(255, 255, 255, 0.5);
+	--loader-shadow-color-quaternary: rgba(255, 255, 255, 0.2);
 
 	/* Gradient Color */
 	--scrollbar-thumb-gradient-color: #3c3c3cbf, #505050bf, #3c3c3cbf;
