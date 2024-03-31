@@ -203,6 +203,7 @@
 			width: 30px;
 			height: 30px;
 			transition: transform 0.3s ease-in-out;
+			user-select: none;
 		}
 
 		.select .select__btn .select__text svg path {
