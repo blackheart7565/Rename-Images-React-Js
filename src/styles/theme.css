@@ -24,6 +24,7 @@
 	--btn-bg-hover-color: #000;
 	--modal-window-main-bg-color: rgba(0, 0, 0, 0.6);
 	--modal-window-inner-bg-color: #FFF;
+	--loader-i-bg-color: #3cff00;
 
 	/* Border */
 	--select-dropdown-border-color: #000;
@@ -79,6 +80,7 @@
 	--btn-bg-hover-color: #FFF;
 	--modal-window-main-bg-color: rgba(0, 0, 0, 0.6);
 	--modal-window-inner-bg-color: #0b0b0bfa;
+	--loader-i-bg-color: #33d3ff;
 
 	/* Border */
 	--select-dropdown-border-color: #FFF;

@@ -1,0 +1,39 @@
+// :root {
+// 	--loader-i-bg-color: #3cff00;
+// }
+
+// [data-theme="dark"] {
+// 	--loader-i-bg-color: #33d3ff;
+// }
+
+.loader-renamed {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+
+	i {
+		width: 7px;
+		height: 100%;
+		background-color: var(--loader-i-bg-color);
+		scale: 0;
+		animation: animTextRainbow 1s ease-in-out infinite;
+	}
+}
+
+@keyframes animTextRainbow {
+	0% {
+		filter: hue-rotate(0deg);
+		scale: 0;
+	}
+
+	50% {
+		filter: hue-rotate(360deg);
+		scale: 1;
+	}
+
+	100% {
+		filter: hue-rotate(0deg);
+		scale: 0;
+	}
+}

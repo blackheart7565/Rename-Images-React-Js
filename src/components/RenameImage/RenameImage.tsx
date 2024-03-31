@@ -16,6 +16,7 @@ import { ButtonTheme } from "../UI/ButtonTheme";
 import { Select } from "../UI/Select/Select";
 
 import { toast } from "react-toastify";
+import { LoaderRenamed } from "../LoaderRenamed/LoaderRenamed";
 import { RenderImagesList } from "../RenderImagesList/RenderImagesList";
 import { SettingsIcon } from "../SettingsIcon";
 import { Wrapper } from "../Wrapper/Wrapper";
@@ -30,8 +31,6 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 	const [newName, setNewName] = useState<TStringNumber>(NameSite);
 	const [isNumericInput, setIsNumericInput] = useState<boolean>(false);
 
-	const [isLoadingRenamed, setIsLoadingRenamed] = useState<boolean>(false);
-
 	const {
 		isDrop,
 		isLoadingDragDrop,
@@ -41,9 +40,14 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 		onDragLeave,
 	} = useDragDropHandler(setDropImages);
 
-	const { renamingImages } = useRenameImages(dropImages);
+	const {
+		isLoadingRenamed,
+		renamingImages
+	} = useRenameImages(dropImages);
 
 	const handleRenamingImages = () => {
+		if (!dropImages || dropImages.length <= 0) return;
+
 		const renameImages = renamingImages(newName);
 		setRenameImages(renameImages);
 	};
@@ -121,15 +125,7 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 								/>
 							</Region>
 							<div className="rename-image__inner-center">
-								<span id="rename-progress">
-									<i></i>
-									<i></i>
-									<i></i>
-									<i></i>
-									<i></i>
-									<i></i>
-									<i></i>
-								</span>
+								{isLoadingRenamed && <LoaderRenamed size={10} />}
 							</div>
 							<Region>
 								<RenderImagesList
