@@ -1,15 +1,16 @@
 import classNames from "classnames";
 import React, { useState } from "react";
 
+import { TDispatch } from "../../types/common";
 import { Button } from "../UI/Button/Button";
 import { Input } from "../UI/Input/Input";
 
-import { TDispatchImages } from "../../types/common";
 import "./ModalWindow.scss";
 
 interface IModalWindowProps {
 	isOpen: boolean;
-	setIsOpen: TDispatchImages<boolean>;
+	setIsOpen: TDispatch<boolean>;
+	isNumeric: boolean;
 
 	onSaveValue?: (value: string | number) => void;
 }
@@ -17,6 +18,7 @@ interface IModalWindowProps {
 export const ModalWindow: React.FC<IModalWindowProps> = ({
 	isOpen,
 	setIsOpen,
+	isNumeric,
 	onSaveValue,
 }) => {
 	const [value, setValue] = useState<string>("");
@@ -40,8 +42,10 @@ export const ModalWindow: React.FC<IModalWindowProps> = ({
 		>
 			<div className="modal-window__inner" onClick={(event) => event.stopPropagation()}>
 				<Input
-					id={"common-name-input"}
+					className="modal-window__enter"
+					id={"name-input"}
 					value={value}
+					placeholder={isNumeric ? "Введите число" : "Введите название"}
 					onChange={(e) => setValue(e.target.value)}
 				/>
 				<Button

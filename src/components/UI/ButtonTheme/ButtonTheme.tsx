@@ -1,9 +1,10 @@
 import classNames from "classnames";
 import React, { ChangeEvent } from "react";
 
-import { useSetTheme } from "../../../hooks/useSetTheme";
+import { useTheme } from "../../../hooks/useTheme";
 import { MoonIcon } from "../../MoonIcon";
 import { SunnyIcon } from "../../SunnyIcon";
+
 import "./ButtonTheme.scss";
 
 interface IButtonThemeProps {
@@ -15,14 +16,10 @@ export const ButtonTheme: React.FC<IButtonThemeProps> = ({
 	id,
 	className
 }) => {
-	const { setIsDark } = useSetTheme();
+	const { toggleTheme } = useTheme();
 
 	const handleChangeTheme = (event: ChangeEvent<HTMLInputElement>) => {
-		if (event.target.checked) {
-			setIsDark(true);
-		} else {
-			setIsDark(false);
-		}
+		toggleTheme(event.target.checked);
 	};
 
 	return (

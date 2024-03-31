@@ -17,7 +17,9 @@ import { ButtonSelect } from "../UI/ButtonSelect";
 import { ButtonTheme } from "../UI/ButtonTheme";
 import { Select } from "../UI/Select/Select";
 
+import { toast } from "react-toastify";
 import { SettingsIcon } from "../SettingsIcon";
+import { Wrapper } from "../Wrapper/Wrapper";
 import "./RenameImage.scss";
 
 interface IRenameImageProps { }
@@ -58,10 +60,12 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 
 		if (isNumericInput && !isNum) {
 			console.error("Введенное значение не является числом!");
+			toast.error("Введенное значение не является числом!");
 			return;
 		}
 		if (!isNumericInput && isNum) {
 			console.error("Введенное значение не является строкой!");
+			toast.error("Введенное значение не является строкой!");
 			return;
 		}
 
@@ -71,8 +75,9 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 	};
 
 	return (
-		<Region>
+		<Wrapper>
 			<ModalWindow
+				isNumeric={isNumericInput}
 				isOpen={isOpenModalWindow}
 				setIsOpen={setIsOpenModalWindow}
 				onSaveValue={onSaveValue}
@@ -168,46 +173,6 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 													</ButtonSelect>
 												)
 											},
-											{
-												id: 3,
-												value: (
-													<ButtonSelect>
-														test 1
-													</ButtonSelect>
-												)
-											},
-											{
-												id: 4,
-												value: (
-													<ButtonSelect>
-														test 2
-													</ButtonSelect>
-												)
-											},
-											{
-												id: 5,
-												value: (
-													<ButtonSelect>
-														test 3
-													</ButtonSelect>
-												)
-											},
-											{
-												id: 6,
-												value: (
-													<ButtonSelect>
-														test 4
-													</ButtonSelect>
-												)
-											},
-											{
-												id: 7,
-												value: (
-													<ButtonSelect>
-														test 6
-													</ButtonSelect>
-												)
-											},
 										]}
 									/>
 								</Region>
@@ -227,6 +192,6 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 					</section>
 				</DragDropContent>
 			</div>
-		</Region>
+		</Wrapper>
 	);
 };

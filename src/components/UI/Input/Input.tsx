@@ -1,8 +1,10 @@
+import classNames from "classnames";
 import { ChangeEvent, FC } from "react";
 
 import "./Input.scss";
 
 interface IInputProps {
+	className?: string | undefined;
 	id: string | undefined;
 	placeholder?: string | undefined;
 	label?: string | undefined;
@@ -11,6 +13,7 @@ interface IInputProps {
 }
 
 export const Input: FC<IInputProps> = ({
+	className,
 	id,
 	placeholder,
 	label,
@@ -20,7 +23,7 @@ export const Input: FC<IInputProps> = ({
 	return (
 		<label
 			htmlFor={id}
-			className="input"
+			className={classNames("input", className)}
 		>
 			{label && <span className="input__label">{label}</span>}
 			<input

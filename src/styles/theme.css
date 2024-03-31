@@ -11,6 +11,9 @@
 	--images-count-title: #f94700;
 	--images-count-text: #000;
 	--main-title-color: #000;
+	--modal-window-input-color: #000;
+	--modal-window-input-focus-color: #000;
+	--modal-window-input-placeholder-color: #000;
 
 	/* Background Color */
 	--main-bg-color: #FFF;
@@ -19,6 +22,8 @@
 	--select-dropdown-bg-color: #FFF;
 	--select-dropdown-list-item-bg-hover-color: #bdbcbc;
 	--btn-bg-hover-color: #000;
+	--modal-window-main-bg-color: rgba(0, 0, 0, 0.6);
+	--modal-window-inner-bg-color: #FFF;
 
 	/* Border */
 	--select-dropdown-border-color: #000;
@@ -26,12 +31,15 @@
 	--btn-border-color: #000;
 	--empty-border-color: #c0c0c0;
 	--dragdrop-list-container-border-color: #c0c0c0;
+	--modal-window-input-border-color: #000000;
+	--modal-window-input-focus-border-color: #0295f7;
 
 	/* Box Shadow  */
 	--theme-btn-shadow-color: inset 0px 8px 60px rgba(0, 0, 0, 0.1), inset 0px -4px 4px rgba(0, 0, 0, 0.1);
 	--dragdrop-list-item-image-shadow-color: #0e0d0d;
 	--dragdrop-list-item-image-inset-shadow-color: #FFFF;
 	--main-inner-shadow-color: #000;
+	--modal-window-inner-shadow-color: #c0c0c0;
 
 	/* Gradient Color */
 	--scrollbar-thumb-gradient-color: #9c9c9c, #b0b1b4, #9c9c9c;
@@ -54,6 +62,9 @@
 	--images-count-title: #f94700;
 	--images-count-text: #FFF;
 	--main-title-color: #FFF;
+	--modal-window-input-color: #FFF;
+	--modal-window-input-focus-color: #FFF;
+	--modal-window-input-placeholder-color: #FFF;
 
 	/* Background Color */
 	--main-bg-color: rgb(20, 20, 23);
@@ -62,6 +73,8 @@
 	--select-dropdown-bg-color: #0b0b0bfa;
 	--select-dropdown-list-item-bg-hover-color: #505050bf;
 	--btn-bg-hover-color: #FFF;
+	--modal-window-main-bg-color: rgba(0, 0, 0, 0.6);
+	--modal-window-inner-bg-color: #0b0b0bfa;
 
 	/* Border */
 	--select-dropdown-border-color: #FFF;
@@ -69,12 +82,15 @@
 	--btn-border-color: #FFF;
 	--empty-border-color: #080809;
 	--dragdrop-list-container-border-color: #080809;
+	--modal-window-input-border-color: #FFFFFF;
+	--modal-window-input-focus-border-color: #ff8000;
 
 	/* Box Shadow  */
 	--theme-btn-shadow-color: inset 0px 8px 60px rgba(40, 40, 43, 0.8), inset 0px -4px 4px rgb(25, 25, 41);
 	--dragdrop-list-item-image-shadow-color: #0e0d0d;
 	--dragdrop-list-item-image-inset-shadow-color: #FFFF;
 	--main-inner-shadow-color: #080809;
+	--modal-window-inner-shadow-color: #292828;
 
 	/* Gradient Color */
 	--scrollbar-thumb-gradient-color: #3c3c3cbf, #505050bf, #3c3c3cbf;

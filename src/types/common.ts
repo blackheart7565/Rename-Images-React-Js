@@ -1,5 +1,15 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
-export type TDispatchImages<T> = Dispatch<SetStateAction<T>>;
+export type TDispatch<T> = Dispatch<SetStateAction<T>>;
 
 export type TStringNumber = string | number;
+
+
+export interface IThemeContextType {
+	isDark: boolean;
+	toggleTheme: (flag?: boolean) => void;
+}
+
+export interface IThemeProvider {
+	children: ReactNode;
+}

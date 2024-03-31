@@ -1,11 +1,11 @@
 import { DragEvent, useState } from "react";
-import { TDispatchImages } from "../types/common";
+import { TDispatch } from "../types/common";
 import { ImageDetails } from "../types/element";
 import { readFileAsDataURL, validImageDragDrop } from "../utils/common";
 
 interface IReturnProps {
 	isDrop: boolean,
-	setIsDrop: TDispatchImages<boolean>,
+	setIsDrop: TDispatch<boolean>,
 
 	onDrop: (event: DragEvent<HTMLDivElement>) => void;
 	onDragOver: (event: DragEvent<HTMLDivElement>) => void;
@@ -13,7 +13,7 @@ interface IReturnProps {
 	onDrag: (event: DragEvent<HTMLDivElement>) => void;
 }
 
-export const useDragDropHandler = (setImages: TDispatchImages<ImageDetails[]>): IReturnProps => {
+export const useDragDropHandler = (setImages: TDispatch<ImageDetails[]>): IReturnProps => {
 	const [isDrop, setIsDrop] = useState<boolean>(false);
 
 
