@@ -1,7 +1,7 @@
 import { DragEvent, useState } from "react";
 import { TDispatch } from "../types/common";
-import { ImageDetails } from "../types/element";
-import { readFileAsDataURL, validImageDragDrop } from "../utils/common";
+import { IImageDetails } from "../types/element";
+import { readFileAsDataURL, resolveDuplicateIds, validImageDragDrop } from "../utils/common";
 
 interface IReturnProps {
 	isDrop: boolean,
@@ -14,7 +14,7 @@ interface IReturnProps {
 	onDrag: (event: DragEvent<HTMLDivElement>) => void;
 }
 
-export const useDragDropHandler = (setImages: TDispatch<ImageDetails[]>, loadingTimeout?: number): IReturnProps => {
+export const useDragDropHandler = (setImages: TDispatch<IImageDetails[]>, loadingTimeout?: number): IReturnProps => {
 	const [isDrop, setIsDrop] = useState<boolean>(false);
 	const [isLoadingDragDrop, setIsLoadingDragDrop] = useState<boolean>(false);
 
@@ -38,12 +38,22 @@ export const useDragDropHandler = (setImages: TDispatch<ImageDetails[]>, loading
 				return {
 					id: index,
 					image, creationDate, imageUrl
-				} as ImageDetails;
+				} as IImageDetails;
 			});
 
 		try {
 			const images = await Promise.all(imageFile);
-			setImages(prev => [...prev, ...images]);
+
+			setImages((prev) => {
+				let nextId = resolveDuplicateIds(prev);
+				return [
+					...prev,
+					...images.map(img => ({
+						...img,
+						id: nextId++
+					}))
+				];
+			});
 		} catch (error) {
 			console.error('Error processing files:', error);
 		} finally {
