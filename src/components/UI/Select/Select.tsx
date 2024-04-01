@@ -33,6 +33,7 @@ export const Select: FC<ISelectProps> = ({
 
 	const handleItemSelected = (item: IItem) => {
 		setIsOpen(false);
+		setSelectedItem(null);
 	};
 
 

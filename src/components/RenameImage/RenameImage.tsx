@@ -5,7 +5,7 @@ import { useDragDropHandler } from "../../hooks/useDragDropHandler";
 import { useRenameImages } from "../../hooks/useRenameImages";
 import { TStringNumber } from "../../types/common";
 import { IImageDetails } from "../../types/element";
-import { convertImageToJpgAsync, downloadZipImages, isNumeric } from "../../utils/common";
+import { convertImageToJpgAsync, downloadZipImages, getExtensionFile, isNumeric } from "../../utils/common";
 import { NameSite } from "../../utils/constants";
 import { DragDropContent } from "../DragDropContent";
 import { ImageCount } from "../ImageCount";
@@ -56,12 +56,17 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 		const renameImages: IImageDetails[] = renamingImages(newName);
 
 		if (isConvertToJpg) {
-			const convertJpgImages: IImageDetails[] = await Promise.all(renameImages.map(async (img: IImageDetails): Promise<IImageDetails> => ({
-				...img,
-				image: await convertImageToJpgAsync(img.image, true, (error) => {
-					toast.error(`Произошла ошибка при конвертации изображения: ${error}`);
-				}),
-			})));
+			const convertJpgImages: IImageDetails[] = await Promise.all(renameImages.map(async (img: IImageDetails): Promise<IImageDetails> => {
+				return {
+					...img,
+					image: getExtensionFile(img.image.name) === "jpg"
+						? img.image
+						: await convertImageToJpgAsync(img.image, true, (error) => {
+							toast.error(`Произошла ошибка при конвертации изображения: ${error}`);
+						}),
+				};
+			}));
+
 			setRenameImages(convertJpgImages);
 		} else {
 			setRenameImages(renameImages);

@@ -17,6 +17,10 @@ export const convertByteToFormatImageSize = (byte: number) => {
 	return `${size.toFixed(2)} ${units[unitsIndex]}`;
 };
 
+export const getExtensionFile = (value: string) => {
+	return value.split(".").pop();
+};
+
 export const readFileAsDataURL = (image: File): Promise<string> => {
 	return new Promise<string>((resolve, reject) => {
 		const reader = new FileReader();
