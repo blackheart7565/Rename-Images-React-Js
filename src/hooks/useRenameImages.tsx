@@ -8,7 +8,6 @@ export const useRenameImages = (
 ) => {
 	const [isLoadingRenamed, setIsLoadingRenamed] = useState<boolean>(false);
 
-
 	const renamingImages = (newName: TStringNumber, loadingTimeout?: number): IImageDetails[] => {
 		setIsLoadingRenamed(true);
 		let renamedImages: IImageDetails[] = [];

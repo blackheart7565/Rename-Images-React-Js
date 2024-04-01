@@ -1,11 +1,11 @@
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import { toast } from "react-toastify";
 
 import { useDragDropHandler } from "../../hooks/useDragDropHandler";
 import { useRenameImages } from "../../hooks/useRenameImages";
 import { TStringNumber } from "../../types/common";
 import { IImageDetails } from "../../types/element";
-import { downloadZipImages, isNumeric } from "../../utils/common";
+import { convertImageToJpgAsync, downloadZipImages, isNumeric } from "../../utils/common";
 import { NameSite } from "../../utils/constants";
 import { DragDropContent } from "../DragDropContent";
 import { ImageCount } from "../ImageCount";
@@ -20,12 +20,14 @@ import { ButtonTheme } from "../UI/ButtonTheme";
 import { Select } from "../UI/Select/Select";
 import { Wrapper } from "../Wrapper/Wrapper";
 
+import { CheckBox } from "../UI/CheckBox/CheckBox";
 import "./RenameImage.scss";
 
 interface IRenameImageProps { }
 
 export const RenameImage: FC<IRenameImageProps> = () => {
 	const [isOpenModalWindow, setIsOpenModalWindow] = useState<boolean>(false);
+	const [isConvertToJpg, setIsConvertToJpg] = useState<boolean>(false);
 	const [dropImages, setDropImages] = useState<IImageDetails[]>([]);
 	const [renameImages, setRenameImages] = useState<IImageDetails[]>([]);
 	const [newName, setNewName] = useState<TStringNumber>(NameSite);
@@ -45,11 +47,22 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 		renamingImages
 	} = useRenameImages(dropImages);
 
-	const handleRenamingImages = () => {
+	const handleRenamingImages = async () => {
 		if (!dropImages || dropImages.length <= 0) return;
 
-		const renameImages = renamingImages(newName);
-		setRenameImages(renameImages);
+		const renameImages: IImageDetails[] = renamingImages(newName);
+
+		if (isConvertToJpg) {
+			const convertJpgImages: IImageDetails[] = await Promise.all(renameImages.map(async (img: IImageDetails) => ({
+				...img,
+				image: await convertImageToJpgAsync(img.image, true, (error) => {
+					toast.error(`Произошла ошибка при конвертации изображения: ${error}`);
+				}),
+			})));
+			setRenameImages(convertJpgImages);
+		} else {
+			setRenameImages(renameImages);
+		}
 	};
 	const handleSetNameClick = () => {
 		setIsNumericInput(false);
@@ -84,6 +97,12 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 		}
 
 		downloadZipImages(renameImages, NameSite);
+	};
+
+	const handleIsConvertToJpg = (event: ChangeEvent<HTMLInputElement>) => {
+		console.log("event.target.checked", event.target.checked);
+
+		setIsConvertToJpg(event.target.checked);
 	};
 
 	return (
@@ -174,6 +193,15 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 													>
 														Начать cчет
 													</ButtonSelect>
+												)
+											},
+											{
+												id: 3,
+												value: (
+													<CheckBox
+														onChange={handleIsConvertToJpg}
+														label="Конвертировать в jpg?"
+													/>
 												)
 											},
 										]}
