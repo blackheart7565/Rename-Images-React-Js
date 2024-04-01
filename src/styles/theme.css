@@ -25,6 +25,7 @@
 	--modal-window-main-bg-color: rgba(0, 0, 0, 0.6);
 	--modal-window-inner-bg-color: #FFF;
 	--loader-i-bg-color: #3cff00;
+	--checkbox-bg-color: #65f009;
 
 	/* Border */
 	--select-dropdown-border-color: #000;
@@ -81,6 +82,7 @@
 	--modal-window-main-bg-color: rgba(0, 0, 0, 0.6);
 	--modal-window-inner-bg-color: #0b0b0bfa;
 	--loader-i-bg-color: #33d3ff;
+	--checkbox-bg-color: #65f009;
 
 	/* Border */
 	--select-dropdown-border-color: #FFF;

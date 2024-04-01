@@ -14,7 +14,7 @@ export const convertByteToFormatImageSize = (byte: number) => {
 		unitsIndex++;
 	}
 
-	return `${size.toFixed(1)} ${units[unitsIndex]}`;
+	return `${size.toFixed(2)} ${units[unitsIndex]}`;
 };
 
 export const readFileAsDataURL = (image: File): Promise<string> => {

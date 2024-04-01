@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from "react";
+import { FC, useState } from "react";
 import { toast } from "react-toastify";
 
 import { useDragDropHandler } from "../../hooks/useDragDropHandler";
@@ -17,10 +17,10 @@ import { SettingsIcon } from "../SettingsIcon";
 import { Button } from "../UI/Button/Button";
 import { ButtonSelect } from "../UI/ButtonSelect";
 import { ButtonTheme } from "../UI/ButtonTheme";
+import { CheckBox } from "../UI/CheckBox/CheckBox";
 import { Select } from "../UI/Select/Select";
 import { Wrapper } from "../Wrapper/Wrapper";
 
-import { CheckBox } from "../UI/CheckBox/CheckBox";
 import "./RenameImage.scss";
 
 interface IRenameImageProps { }
@@ -28,10 +28,10 @@ interface IRenameImageProps { }
 export const RenameImage: FC<IRenameImageProps> = () => {
 	const [isOpenModalWindow, setIsOpenModalWindow] = useState<boolean>(false);
 	const [isConvertToJpg, setIsConvertToJpg] = useState<boolean>(false);
+	const [isNumericInput, setIsNumericInput] = useState<boolean>(false);
 	const [dropImages, setDropImages] = useState<IImageDetails[]>([]);
 	const [renameImages, setRenameImages] = useState<IImageDetails[]>([]);
 	const [newName, setNewName] = useState<TStringNumber>(NameSite);
-	const [isNumericInput, setIsNumericInput] = useState<boolean>(false);
 
 	const {
 		isDrop,
@@ -48,12 +48,15 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 	} = useRenameImages(dropImages);
 
 	const handleRenamingImages = async () => {
-		if (!dropImages || dropImages.length <= 0) return;
+		if (!dropImages || dropImages.length <= 0) {
+			toast.error("Нету картинок для переименование!");
+			return;
+		}
 
 		const renameImages: IImageDetails[] = renamingImages(newName);
 
 		if (isConvertToJpg) {
-			const convertJpgImages: IImageDetails[] = await Promise.all(renameImages.map(async (img: IImageDetails) => ({
+			const convertJpgImages: IImageDetails[] = await Promise.all(renameImages.map(async (img: IImageDetails): Promise<IImageDetails> => ({
 				...img,
 				image: await convertImageToJpgAsync(img.image, true, (error) => {
 					toast.error(`Произошла ошибка при конвертации изображения: ${error}`);
@@ -98,11 +101,8 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 
 		downloadZipImages(renameImages, NameSite);
 	};
-
-	const handleIsConvertToJpg = (event: ChangeEvent<HTMLInputElement>) => {
-		console.log("event.target.checked", event.target.checked);
-
-		setIsConvertToJpg(event.target.checked);
+	const handleIsConvertToJpg = (checked: boolean) => {
+		setIsConvertToJpg(checked);
 	};
 
 	return (
@@ -199,7 +199,8 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 												id: 3,
 												value: (
 													<CheckBox
-														onChange={handleIsConvertToJpg}
+														id="checkbox-convert"
+														onChecked={handleIsConvertToJpg}
 														label="Конвертировать в jpg?"
 													/>
 												)
@@ -219,7 +220,9 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 							<div className="rename-image__btns-right">
 								<Button
 									onClick={handleDownloadImages}
-								>Скачать</Button>
+								>
+									Скачать
+								</Button>
 							</div>
 						</div>
 					</section>
