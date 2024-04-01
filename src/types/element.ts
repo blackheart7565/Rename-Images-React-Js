@@ -1,4 +1,4 @@
-export interface ImageDetails {
+export interface IImageDetails {
 	id: number | string;
 	image: File;
 	creationDate: Date;

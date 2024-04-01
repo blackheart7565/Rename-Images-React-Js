@@ -1,4 +1,7 @@
-import { ImageDetails } from "../types/element";
+import JSZip from "jszip";
+import { toast } from "react-toastify";
+import { IImageDetails } from "../types/element";
+import { NameSite } from "./constants";
 
 export const convertByteToFormatImageSize = (byte: number) => {
 	const units: Array<string> = ['B', 'KB', 'MB', 'GB', 'TB'];
@@ -29,11 +32,11 @@ export const validImageDragDrop = (items: DataTransferItemList) => {
 		.filter(file => file && file.type.startsWith("image/"));
 };
 
-export const deleteImageItemFromList = (images: ImageDetails[], id: number | string) => {
-	return images.filter((image: ImageDetails) => image.id !== id);
+export const deleteImageItemFromList = (images: IImageDetails[], id: number | string) => {
+	return images.filter((image: IImageDetails) => image.id !== id);
 };
 
-export const compareFileMetadata = (images1: ImageDetails, images2: ImageDetails): boolean => {
+export const compareFileMetadata = (images1: IImageDetails, images2: IImageDetails): boolean => {
 	const fileProps: (keyof File)[] = [
 		"lastModified",
 		"size",
@@ -62,4 +65,44 @@ export const renameImage = (image: File, newName: string, isWritableLastModified
  */
 export const isNumeric = (value: string) => {
 	return /^\d+$/.test(value);
+};
+
+export const downloadZipImages = (images: IImageDetails[], nameZip?: string) => {
+	const zip = new JSZip();
+
+	images.forEach(({
+		image
+	}: IImageDetails, index: number) => {
+		const nameFile = `${image.name.split(".")[0]}.${image.name.split(".").pop()}`;
+		zip.file(nameFile, image);
+	});
+
+	zip.generateAsync({ type: "blob" })
+		.then((content: any) => {
+			const url = URL.createObjectURL(content);
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = nameZip ?? NameSite;
+			a.click();
+			toast.info('Начало скачивания...');
+			setTimeout(() => {
+				a.remove();
+				window.URL.revokeObjectURL(url);
+				toast.success('Скачивание успешно завершено!');
+			}, 100);
+		}).catch(error => {
+			console.error("Error generating zip:", error);
+			toast.error(`Ошибка при создании zip: ${error}`);
+		});
+};
+
+/**
+* Функция которая проверяет содержит ли масив id, если да
+ * то она берёт максимальный id и инкрементирует его на 1 
+ * @param {IImageDetails[]} images Масив картинок
+ * @returns Возвращает инкрементированный id
+ */
+export const resolveDuplicateIds = (images: IImageDetails[]): number => {
+	const maxId = images.length > 0 ? Math.max(...images.map(({ id }: IImageDetails) => Number(id))) : 0;
+	return maxId + 1;
 };

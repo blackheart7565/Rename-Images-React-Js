@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 
-import { ImageDetails } from "../../types/element";
+import { IImageDetails } from "../../types/element";
 import { deleteImageItemFromList } from "../../utils/common";
 import { ImagesItem } from "../ImagesItem/ImagesItem";
 
 interface IImagesListProps {
-	images: ImageDetails[];
-	setImages?: Dispatch<SetStateAction<ImageDetails[]>>;
+	images: IImageDetails[];
+	setImages?: Dispatch<SetStateAction<IImageDetails[]>>;
 }
 export const ImagesList: React.FC<IImagesListProps> = ({
 	images,
@@ -25,7 +25,7 @@ export const ImagesList: React.FC<IImagesListProps> = ({
 					id,
 					image,
 					imageUrl
-				}: ImageDetails, index) => (
+				}: IImageDetails, index) => (
 					<ImagesItem
 						key={index}
 						imageUrl={imageUrl}
