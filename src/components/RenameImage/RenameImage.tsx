@@ -109,6 +109,10 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 	const handleIsConvertToJpg = (checked: boolean) => {
 		setIsConvertToJpg(checked);
 	};
+	const handleResetImages = () => {
+		setDropImages([]);
+		setRenameImages([]);
+	};
 
 	return (
 		<Wrapper>
@@ -223,6 +227,11 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 								</div>
 							</div>
 							<div className="rename-image__btns-right">
+								<Button
+									onClick={handleResetImages}
+								>
+									Очистить изображения
+								</Button>
 								<Button
 									onClick={handleDownloadImages}
 								>

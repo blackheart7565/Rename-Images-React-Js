@@ -215,7 +215,12 @@
 		}
 	}
 
-	&__btns-right {}
+	&__btns-right {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+	}
 
 	&__current-name {
 		display: flex;
