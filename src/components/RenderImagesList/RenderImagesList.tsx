@@ -1,14 +1,14 @@
 import React, { ReactNode } from "react";
 
 import { TDispatch } from "../../types/common";
-import { ImageDetails } from "../../types/element";
+import { IImageDetails } from "../../types/element";
 import { Empty } from "../Empty/Empty";
 import { ImagesList } from "../ImagesList/ImagesList";
 import { LoaderContainer } from "../LoaderContainer/LoaderContainer";
 
 interface IRenderImagesListProps {
-	images: ImageDetails[],
-	setImages: TDispatch<ImageDetails[]>,
+	images: IImageDetails[],
+	setImages: TDispatch<IImageDetails[]>,
 	isLoading: boolean,
 	EmptyText: ReactNode,
 }

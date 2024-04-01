@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { TStringNumber } from "../types/common";
-import { ImageDetails } from "../types/element";
+import { IImageDetails } from "../types/element";
 import { renameImage } from "../utils/common";
 
 export const useRenameImages = (
-	images: ImageDetails[],
+	images: IImageDetails[],
 ) => {
 	const [isLoadingRenamed, setIsLoadingRenamed] = useState<boolean>(false);
 
 
-	const renamingImages = (newName: TStringNumber, loadingTimeout?: number): ImageDetails[] => {
+	const renamingImages = (newName: TStringNumber, loadingTimeout?: number): IImageDetails[] => {
 		setIsLoadingRenamed(true);
-		let renamedImages: ImageDetails[] = [];
+		let renamedImages: IImageDetails[] = [];
 		try {
 			const isNum = typeof newName === "number";
 
-			renamedImages = images.map((item: ImageDetails, index: number) => {
+			renamedImages = images.map((item: IImageDetails, index: number) => {
 				const { image } = item;
 
 				const name = isNum ? Number(newName) + index : `${newName}_${index + 1}`;
@@ -24,7 +24,7 @@ export const useRenameImages = (
 					image,
 					`${name}.${image.name.split(".").pop()}`
 				);
-				return { ...item, image: newImage } as ImageDetails;
+				return { ...item, image: newImage } as IImageDetails;
 			});
 		} catch (error: any) {
 			console.error('Ошибка при переименовании:', error);

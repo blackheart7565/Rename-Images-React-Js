@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { useDragDropHandler } from "../../hooks/useDragDropHandler";
 import { useRenameImages } from "../../hooks/useRenameImages";
 import { TStringNumber } from "../../types/common";
-import { ImageDetails } from "../../types/element";
-import { isNumeric } from "../../utils/common";
+import { IImageDetails } from "../../types/element";
+import { downloadZipImages, isNumeric } from "../../utils/common";
 import { NameSite } from "../../utils/constants";
 import { DragDropContent } from "../DragDropContent";
 import { ImageCount } from "../ImageCount";
@@ -26,8 +26,8 @@ interface IRenameImageProps { }
 
 export const RenameImage: FC<IRenameImageProps> = () => {
 	const [isOpenModalWindow, setIsOpenModalWindow] = useState<boolean>(false);
-	const [dropImages, setDropImages] = useState<ImageDetails[]>([]);
-	const [renameImages, setRenameImages] = useState<ImageDetails[]>([]);
+	const [dropImages, setDropImages] = useState<IImageDetails[]>([]);
+	const [renameImages, setRenameImages] = useState<IImageDetails[]>([]);
 	const [newName, setNewName] = useState<TStringNumber>(NameSite);
 	const [isNumericInput, setIsNumericInput] = useState<boolean>(false);
 
@@ -76,6 +76,14 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 		const newName = isNum ? Number(value) : value.toString();
 		setNewName(newName);
 		setIsOpenModalWindow(false);
+	};
+	const handleDownloadImages = () => {
+		if (!renameImages || renameImages.length <= 0) {
+			toast.error("Error: Нету переименованых файлов!");
+			return;
+		}
+
+		downloadZipImages(renameImages, NameSite);
 	};
 
 	return (
@@ -181,7 +189,9 @@ export const RenameImage: FC<IRenameImageProps> = () => {
 								</div>
 							</div>
 							<div className="rename-image__btns-right">
-								<Button>Скачать</Button>
+								<Button
+									onClick={handleDownloadImages}
+								>Скачать</Button>
 							</div>
 						</div>
 					</section>
