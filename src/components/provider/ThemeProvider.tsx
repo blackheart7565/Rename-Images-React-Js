@@ -9,7 +9,7 @@ export const ThemeProvider: FC<IThemeProvider> = ({ children }) => {
 
 	const value = useMemo(() => (
 		theme
-	), [theme.isDark]);
+	), [theme]);
 
 	return (
 		<ThemeContext.Provider value={value}>
