@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Rename-Images-React-Js/static/css/main.15b43b28.css",
-    "main.js": "/Rename-Images-React-Js/static/js/main.bff2a462.js",
+    "main.js": "/Rename-Images-React-Js/static/js/main.9a455f9e.js",
     "static/media/Montserrat-800.otf": "/Rename-Images-React-Js/static/media/Montserrat-800.499f60ce711aa26b5a68.otf",
     "static/media/Montserrat-700.otf": "/Rename-Images-React-Js/static/media/Montserrat-700.728636d7882028820bad.otf",
     "static/media/Montserrat-600.otf": "/Rename-Images-React-Js/static/media/Montserrat-600.18314fed8b208ec35c60.otf",
@@ -31,10 +31,10 @@
     "static/media/Montserrat-100.woff": "/Rename-Images-React-Js/static/media/Montserrat-100.8016129f6c06f7b86904.woff",
     "index.html": "/Rename-Images-React-Js/index.html",
     "main.15b43b28.css.map": "/Rename-Images-React-Js/static/css/main.15b43b28.css.map",
-    "main.bff2a462.js.map": "/Rename-Images-React-Js/static/js/main.bff2a462.js.map"
+    "main.9a455f9e.js.map": "/Rename-Images-React-Js/static/js/main.9a455f9e.js.map"
   },
   "entrypoints": [
     "static/css/main.15b43b28.css",
-    "static/js/main.bff2a462.js"
+    "static/js/main.9a455f9e.js"
   ]
 }
