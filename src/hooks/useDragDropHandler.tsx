@@ -41,8 +41,14 @@ export const useDragDropHandler = (setImages: TDispatch<IImageDetails[]>, loadin
 				} as IImageDetails;
 			});
 
+		const resolvedImageFiles = await Promise.all(imageFile);
+
+		resolvedImageFiles.sort((a: IImageDetails, b: IImageDetails) => (
+			a.creationDate.getTime() - b.creationDate.getTime()
+		));
+
 		try {
-			const images = await Promise.all(imageFile);
+			const images = await Promise.all(resolvedImageFiles);
 
 			setImages((prev) => {
 				let nextId = resolveDuplicateIds(prev);
